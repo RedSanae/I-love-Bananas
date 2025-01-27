@@ -2,8 +2,9 @@ import datetime
 import time
 import os
 # adding date
-
 def add_expense(category, date, money)
+
+def add_expense(cat, date, money)
     try:
         date.datetime.striptime(date, '%Y-%m-%d' )
     except ValueError:
@@ -24,6 +25,7 @@ def main()
         main()
         
 main()
+
 
 
     
