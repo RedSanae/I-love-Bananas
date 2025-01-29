@@ -12,7 +12,7 @@ def return_to_main():
     expenses.sort()
     main()
 
-def add_expenses(date, category, money):
+def add_expenses():
     cat=input("What category does this expense fall under?\n>")
     date=input("When did this expense occur?\n>")
     money=input("How much money did you waste on this expense?\n>")
@@ -25,16 +25,16 @@ def add_expenses(date, category, money):
         exception=True
 
     if not exception: 
-        expenses.append(add_expense(date,cat,money))
+        expenses.append([date,cat,money])
     
     return_to_main()
 
 def show_expenses():
     if len(expenses)>0:
         totalAmount=0
-        for entry in expenses:
-            print(f"Date: {entry[0]} Category: {entry[1]} Amount: ${entry[2]}")
-            totalAmount+=int(entry[2])
+        for expense in expenses:
+            print(f"Date: {expense[0]} Category: {expense[1]} Amount: ${expense[2]}")
+            totalAmount+=int(expense[2])
         print(f"\nTotal: ${totalAmount}")
     else:
         print("No expenses have been recorded yet.")
@@ -42,7 +42,22 @@ def show_expenses():
     return_to_main()
 
 def delete_expenses():
-    print("nothing")
+    if len(expenses)>0:
+        index=1
+        print("Select an expense to delete:\n")
+        for expense in expenses:
+            print(f"[{index}]: Date: {expense[0]} Category: {expense[1]} Amount: ${expense[2]}")#index is used as a way to display the options to delete for the user
+        try:
+            index=int(input(">"))#index is reused to act as the input for which index the user wants to remove
+        except:
+            print("invalid input")
+        index-=1#index-1 as python indexing starts with 0, so on
+        if index>=0:
+            del expenses[index-1]
+        else:
+            print("invalid input")
+    else:
+        print("No expenses have been listed")
 
     return_to_main()
 
