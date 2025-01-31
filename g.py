@@ -24,12 +24,19 @@ def add_expenses():
         print("Invalid Money Input (Please only input numbers 0-9)")
         exception=True
 
+    try:
+        datetime.datetime.strptime(date, '%Y-%m-%d' )
+    except:
+        print("Invalid Date Input format (Please input with YYYY-MM-DD)")
+        exception=True
+
     if not exception: 
         expenses.append([date,cat,money])
-    
+    time.sleep(1)
     return_to_main()
 
 def show_expenses():
+
     if len(expenses)>0:
         totalAmount=0
         for expense in expenses:
@@ -38,7 +45,7 @@ def show_expenses():
         print(f"\nTotal: ${totalAmount}")
     else:
         print("No expenses have been recorded yet.")
-    
+    input("Type any input to proceed.\n>")
     return_to_main()
 
 def delete_expenses():
