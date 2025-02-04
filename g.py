@@ -1,7 +1,6 @@
 import datetime
 import time
 import os
-import multiprocessing
 
 expenses=[]
 
