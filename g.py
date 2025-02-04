@@ -2,23 +2,22 @@ import datetime
 import time
 import os
 import multiprocessing
-# adding date
 
 expenses=[]
 
 
-def return_to_main():
+def return_to_main():#function to do all the work it takes to send the user back to the main menu
     time.sleep(.5)
     os.system('clear')
     expenses.sort()
     main()
 
-def categoryInput():
+def categoryInput():#input for category, mainly for checking and repeating
     os.system('clear')
     category=input("What category does this expense fall under?\n>")
     return category
 
-def dateInput():
+def dateInput():#input for date, mainly for checking and repeating
     os.system('clear')
     date=input("When did this expense occur? (Please input with YYYY-MM-DD) \n>")
 
@@ -32,7 +31,7 @@ def dateInput():
 
 
 
-def moneyInput():
+def moneyInput():#input for cost, mainly for checking and repeating
     os.system('clear')
     money=input("How much money did you waste on this expense?\n>")
     try:
@@ -44,21 +43,21 @@ def moneyInput():
         os.system('clear')
         moneyInput()
 
-def add_expenses():
+def add_expenses():#uses all the input functions and adds them into the list
     expenses.append([dateInput(),categoryInput(),moneyInput()])
     print('Successfully added to expenses.')
     time.sleep(1)
     return_to_main()
 
-def show_expenses():
+def show_expenses():#displays all expenses
 
-    if len(expenses)>0:
+    if len(expenses)>0:#checks if the length of what expenses have been tracked isn't nonexistent
         totalAmount=0
         for expense in expenses:
             print(f"Date: {expense[0]} Category: {expense[1]} Amount: ${expense[2]}")
             totalAmount+=int(expense[2])
         print(f"\nTotal: ${totalAmount}")
-    else:
+    else:#if theres no expenses made it'll show this instead of being blank
         print("No expenses have been recorded yet.")
     input("Type any input to proceed.\n>")
     return_to_main()
