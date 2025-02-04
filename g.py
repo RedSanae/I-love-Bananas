@@ -1,6 +1,7 @@
 import datetime
 import time
 import os
+import multiprocessing
 # adding date
 
 expenses=[]
@@ -12,26 +13,37 @@ def return_to_main():
     expenses.sort()
     main()
 
-def add_expenses():
-    cat=input("What category does this expense fall under?\n>")
-    date=input("When did this expense occur?\n>")
-    money=input("How much money did you waste on this expense?\n>")
+def categoryInput():
+    category=input("What category does this expense fall under?\n>")
+    return category
 
-    exception=None
-    try:
-        money=int(money)
-    except:
-        print("Invalid Money Input (Please only input numbers 0-9)")
-        exception=True
+def dateInput():
+    date=input("When did this expense occur? (Please input with YYYY-MM-DD) \n>")
 
     try:
         datetime.datetime.strptime(date, '%Y-%m-%d' )
+        return date
     except:
         print("Invalid Date Input format (Please input with YYYY-MM-DD)")
-        exception=True
+        time.sleep(.5)
+        os.system('clear')
+        dateInput()
 
-    if not exception: 
-        expenses.append([date,cat,money])
+
+
+def moneyInput():
+    money=input("How much money did you waste on this expense?\n>")
+    try:
+        money=int(money)
+        return money
+    except:
+        print("Invalid Money Input (Please only input numbers 0-9)")
+        time.sleep(.5)
+        os.system('clear')
+        moneyInput()
+
+def add_expenses():
+    expenses.append([dateInput(),categoryInput(),moneyInput()])
     time.sleep(1)
     return_to_main()
 
