@@ -46,6 +46,7 @@ def moneyInput():
 
 def add_expenses():
     expenses.append([dateInput(),categoryInput(),moneyInput()])
+    print('Successfully added to expenses.')
     time.sleep(1)
     return_to_main()
 
