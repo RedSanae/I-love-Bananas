@@ -14,10 +14,12 @@ def return_to_main():
     main()
 
 def categoryInput():
+    os.system('clear')
     category=input("What category does this expense fall under?\n>")
     return category
 
 def dateInput():
+    os.system('clear')
     date=input("When did this expense occur? (Please input with YYYY-MM-DD) \n>")
 
     try:
@@ -26,12 +28,12 @@ def dateInput():
     except:
         print("Invalid Date Input format (Please input with YYYY-MM-DD)")
         time.sleep(.5)
-        os.system('clear')
         dateInput()
 
 
 
 def moneyInput():
+    os.system('clear')
     money=input("How much money did you waste on this expense?\n>")
     try:
         money=int(money)
