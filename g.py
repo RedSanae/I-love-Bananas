@@ -2,7 +2,7 @@ import datetime
 import time
 import os
 
-expenses=[]
+expenses=[]#list to easily take out and insert items
 
 
 def return_to_main():#function to do all the work it takes to send the user back to the main menu
